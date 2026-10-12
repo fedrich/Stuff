@@ -40,7 +40,7 @@ export const MAIN = `#version 300 es
 precision highp float;
 precision highp sampler2D;
 in vec2 vUV;
-uniform sampler2D uOrig, uBlur1, uBlur2, uMaskA, uMaskB, uShade, uGlow, uFreck, uHandles;
+uniform sampler2D uOrig, uBlur1, uBlur2, uMaskA, uMaskB, uShade, uGlow, uFreck, uHandles, uMaskC;
 uniform int uNH;
 uniform vec2 uRes;
 uniform bool uShowOriginal;
@@ -50,6 +50,7 @@ uniform float uFreckInt;
 uniform vec3 uSkinMean;     // colore medio della pelle (bassa frequenza)
 // Tratti (chiaroscuro)
 uniform float uCheekDef, uCheekVol, uSculpt, uJawDef, uNoseDef, uContour, uLipVol, uBrowThick, uPeri;
+uniform float uEyeDef, uBrowDef, uLipDef;
 out vec4 o;
 
 vec2 disp(vec2 q) {
@@ -146,6 +147,15 @@ void main() {
   // Sopracciglia più sottili: i bordi tendono al colore della pelle vicina.
   if (uBrowThick < 0.0) C = mix(C, L, -uBrowThick * mA.a * 0.45);
   else C *= 1.0 - uBrowThick * mA.a * 0.12;
+
+  // Definizione di sguardo, sopracciglia e labbra: lavora sui toni già presenti (scurisce o aumenta il contrasto),
+  // non aggiunge colori. Con valori negativi ammorbidisce.
+  vec4 mC = texture(uMaskC, uv);
+  C *= 1.0 - clamp(uEyeDef * mC.r * 0.38, -0.3, 0.5);                 // linea delle ciglia
+  if (uEyeDef > 0.0) C = mix(C, (C - 0.45) * 1.25 + 0.47, min(uEyeDef, 1.0) * mC.b * 0.5); // contrasto di iride e sclera
+  C *= 1.0 - 0.35 * clamp(uBrowDef, -1.0, 1.0) * mA.a;                 // sopracciglia più piene (o più leggere)
+  C *= 1.0 - clamp(uLipDef * mC.g * 0.16, -0.2, 0.25);                 // contorno labbra
+  C = lighten(C, uLipDef * gl.a * mA.g * 0.1);
 
   // Luce: luminosità della pelle, radiosità sulle zone in rilievo, sottotono.
   float lum = dot(C, vec3(0.299, 0.587, 0.114));

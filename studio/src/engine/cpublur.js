@@ -4,13 +4,22 @@ const makeCanvas = (w, h) => { const c = document.createElement('canvas'); c.wid
 const ctx2d = (c) => c.getContext('2d', { willReadFrequently: true });
 
 
+// Verifica funzionale: alcuni browser (Safari) accettano la proprietà ctx.filter ma non applicano la
+// sfocatura. Si disegna un punto con blur e si controlla che si sia davvero allargato.
 let filterSupport = null;
 export function canFilter() {
   if (filterSupport === null) {
-    const c = makeCanvas(2, 2).getContext('2d');
     try {
-      c.filter = 'blur(2px)';
-      filterSupport = c.filter === 'blur(2px)';
+      const src = makeCanvas(9, 9);
+      const sctx = src.getContext('2d');
+      sctx.fillStyle = '#fff';
+      sctx.fillRect(4, 4, 1, 1);
+      const dst = makeCanvas(9, 9);
+      const dctx = ctx2d(dst);
+      dctx.filter = 'blur(2px)';
+      dctx.drawImage(src, 0, 0);
+      const a = dctx.getImageData(1, 4, 1, 1).data[3]; // 3 px dal punto: >0 solo se la sfocatura c'è stata
+      filterSupport = a > 0;
     } catch {
       filterSupport = false;
     }

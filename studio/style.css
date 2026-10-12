@@ -112,6 +112,9 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); padding: 0 2px; }
 .ends { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
 .note { color: var(--muted); font-size: 12.5px; margin-top: 14px; }
+.levels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-2); margin: 8px 0 2px; }
+.level { border: 0; background: transparent; border-radius: 999px; padding: 8px 0; font-weight: 600; font-size: 15px; cursor: pointer; color: var(--muted); }
+.level[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,.15); }
 
 dialog { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); padding: 14px; max-width: min(92vw, 640px); }
 dialog::backdrop { background: rgba(0,0,0,.6); }

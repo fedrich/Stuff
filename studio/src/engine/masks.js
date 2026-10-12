@@ -199,7 +199,29 @@ export function buildMasks(f, seg, w, h) {
     ellipse(ctx, lerp(P(0), P(13), 0.45), W * 0.035, W * 0.01, angle);
   }, W * 0.012);
 
+  // Linea delle ciglia superiori (più spessa verso l'esterno) e contorno delle labbra.
+  const lash = layer(w, h, (ctx) => {
+    for (const ids of [[133, 173, 157, 158, 159, 160, 161, 246, 33], [362, 398, 384, 385, 386, 387, 388, 466, 263]]) {
+      const p = pts(ids);
+      for (let i = 0; i < p.length - 1; i++) {
+        ctx.lineWidth = W * (0.004 + 0.007 * (i / (p.length - 2)));
+        ctx.beginPath(); ctx.moveTo(p[i].x, p[i].y); ctx.lineTo(p[i + 1].x, p[i + 1].y); ctx.stroke();
+      }
+    }
+  }, W * 0.003);
+  const lipLine = layer(w, h, (ctx) => {
+    ctx.lineWidth = W * 0.007;
+    ctx.beginPath(); path(ctx, pts(IDX.lipsOuter)); ctx.stroke();
+  }, W * 0.003);
+  const eyeCore = layer(w, h, (ctx) => {
+    for (const ids of [IDX.eyeR, IDX.eyeL]) { ctx.beginPath(); path(ctx, pts(ids), false); ctx.fill(); }
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineWidth = W * 0.006;
+    for (const ids of [IDX.eyeR, IDX.eyeL]) { ctx.beginPath(); path(ctx, pts(ids), false); ctx.stroke(); }
+  }, W * 0.002);
+
   return {
+    maskC: pack(w, h, [lash, lipLine, eyeCore, null]),
     maskA: pack(w, h, [skinFace, lips, eyes, brows]),
     maskB: pack(w, h, [allSkin, mouth, hair, underEye]),
     shade: pack(w, h, [hollow, cheekbone, jawline, noseSides]),

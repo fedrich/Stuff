@@ -238,6 +238,11 @@ function renderPanel() {
     ]));
     parts.push(el('p', { class: 'desc' }, imp ? imp.desc : 'Trasformazioni coordinate di più tratti. Scegli uno stile e regolane l’intensità.'));
     if (imp) {
+      // Livelli rapidi 1–5 (20%…100%), più il cursore continuo per i valori intermedi.
+      parts.push(el('div', { class: 'levels', role: 'group', 'aria-label': 'Livello' }, [1, 2, 3, 4, 5].map((n) => el('button', {
+        type: 'button', class: 'level', 'aria-pressed': String(Math.abs(state.impression.amount - n / 5) < 0.005),
+        onclick: () => { state.impression.amount = n / 5; commit(); scheduleRender(); },
+      }, String(n)))));
       parts.push(slider({ key: 'impression', label: 'Intensità', min: 0, max: 1, neutral: 0, value: state.impression.amount, percent: true,
         onInput: (v) => { state.impression.amount = v; scheduleRender(); },
         onCommit: () => commit(),
