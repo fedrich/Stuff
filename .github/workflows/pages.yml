@@ -1,9 +1,9 @@
-name: Pubblica FaceFree su GitHub Pages
+name: Pubblica le app su GitHub Pages
 
 on:
   push:
     branches: [main]
-    paths: ['faceapp/**', '.github/workflows/pages.yml']
+    paths: ['studio/**', 'faceapp/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -24,8 +24,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # Volto Studio alla radice del sito, la prima versione (FaceFree) in /classic/
+      - name: Prepara il sito
+        run: |
+          mkdir -p _site/classic
+          rsync -a --exclude tests --exclude docs studio/ _site/
+          rsync -a faceapp/ _site/classic/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: faceapp
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

@@ -1,0 +1,74 @@
+[
+ {
+  "id": "f1",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Jasmin_Moghbeli_official_portrait.jpg/1280px-Jasmin_Moghbeli_official_portrait.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Jasmin_Moghbeli_official_portrait.jpg",
+  "license": "Public domain",
+  "author": "Bill Stafford",
+  "note": "donna, carnagione olivastra, luce da studio"
+ },
+ {
+  "id": "m1",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Jonny_Kim_official_portrait.jpg/1280px-Jonny_Kim_official_portrait.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Jonny_Kim_official_portrait.jpg",
+  "license": "Public domain",
+  "author": "Bill Stafford",
+  "note": "uomo, tratti est-asiatici"
+ },
+ {
+  "id": "f2",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Kalpana_Chawla%2C_NASA_photo_portrait_in_orange_suit.jpg/1280px-Kalpana_Chawla%2C_NASA_photo_portrait_in_orange_suit.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Kalpana_Chawla,_NASA_photo_portrait_in_orange_suit.jpg",
+  "license": "Public domain",
+  "author": "NASA",
+  "note": "donna, carnagione media, testa inclinata"
+ },
+ {
+  "id": "f3old",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Elderly_Gambian_woman_face_portrait.jpg/1280px-Elderly_Gambian_woman_face_portrait.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Elderly_Gambian_woman_face_portrait.jpg",
+  "license": "CC BY-SA 2.0",
+  "author": "Ferdinand Reus",
+  "note": "donna anziana, carnagione scura, velo"
+ },
+ {
+  "id": "f4",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Woman_%28Imagicity_820%29.jpg/1280px-Woman_%28Imagicity_820%29.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Woman_(Imagicity_820).jpg",
+  "license": "CC BY-SA 3.0",
+  "author": "Graham Crumb",
+  "note": "donna, bianco e nero, luce laterale"
+ },
+ {
+  "id": "m2",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Young_Man_%28Imagicity_823%29.jpg/1280px-Young_Man_%28Imagicity_823%29.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Young_Man_(Imagicity_823).jpg",
+  "license": "CC BY-SA 3.0",
+  "author": "Graham Crumb",
+  "note": "uomo, bianco e nero, barba, fondo scuro"
+ },
+ {
+  "id": "m3",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Ilan_Ramon%2C_NASA_photo_portrait_in_orange_suit.jpg/1280px-Ilan_Ramon%2C_NASA_photo_portrait_in_orange_suit.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Ilan_Ramon,_NASA_photo_portrait_in_orange_suit.jpg",
+  "license": "Public domain",
+  "author": "NASA",
+  "note": "uomo, carnagione chiara, foto anni 90"
+ },
+ {
+  "id": "f5",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Michelle_Obama_2013_official_portrait.jpg/1280px-Michelle_Obama_2013_official_portrait.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Michelle_Obama_2013_official_portrait.jpg",
+  "license": "Public domain",
+  "author": "Official White House Photo by Chuck Kennedy",
+  "note": "donna, carnagione scura, frangia"
+ },
+ {
+  "id": "f6",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Oh..._-_Flickr_-_Space_Butterfly.jpg/1280px-Oh..._-_Flickr_-_Space_Butterfly.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Oh..._-_Flickr_-_Space_Butterfly.jpg",
+  "license": "CC BY-SA 2.0",
+  "author": "Space Butterfly",
+  "note": "donna, viso coperto dalle mani (occlusione)"
+ }
+]
