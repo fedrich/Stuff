@@ -140,8 +140,8 @@ export function buildHandles(f, p) {
 
   if (val('eyes.tilt')) {
     const s = val('eyes.tilt'); // + angolo esterno sollevato (sguardo "a mandorla" verso l'alto)
-    T(P(33), -0.004 * s, -0.009 * s, eyeW * 0.55, eyeW * 0.45);
-    T(P(263), 0.004 * s, -0.009 * s, eyeW * 0.55, eyeW * 0.45);
+    T(P(33), -0.004 * s, -0.009 * s, eyeW * 0.45, eyeW * 0.38);
+    T(P(263), 0.004 * s, -0.009 * s, eyeW * 0.45, eyeW * 0.38);
     T(P(133), 0, 0.003 * s, eyeW * 0.35, eyeW * 0.35);
     T(P(362), 0, 0.003 * s, eyeW * 0.35, eyeW * 0.35);
   }
