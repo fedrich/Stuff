@@ -46,6 +46,12 @@ await page.locator('#s-impression').dispatchEvent('change');
 let s = await st();
 step('impressione Sofisticato al 75%', s.impression.id === 'sofisticato' && Math.abs(s.impression.amount - 0.75) < 1e-6);
 await shot('3-impressione');
+await page.locator('.level', { hasText: '5' }).tap();
+s = await st();
+step('livello rapido 5 = 100%', s.impression.amount === 1);
+await page.locator('.level', { hasText: '2' }).tap();
+s = await st();
+step('livello rapido 2 = 40%', Math.abs(s.impression.amount - 0.4) < 1e-9);
 
 await page.locator('.cats button', { hasText: 'Pelle' }).tap();
 await page.locator('.tool', { hasText: 'Abbronzatura' }).tap();

@@ -107,6 +107,11 @@ export function buildHandles(f, p) {
     const s = val('lips.width');
     sides([[61, -1], [291, 1]], (c, d) => T(c, d * 0.012 * s, 0, 0.05, 0.045));
   }
+  if (val('lips.define')) {
+    const s = val('lips.define'); // arco di Cupido leggermente più marcato
+    T(P(37), 0, -0.004 * s, 0.03, 0.025);
+    T(P(267), 0, -0.004 * s, 0.03, 0.025);
+  }
   if (val('expr.smile')) {
     const s = val('expr.smile');
     sides([[61, -1], [291, 1]], (c, d) => T(c, d * 0.008 * s, -0.012 * s, 0.07, 0.06));
@@ -131,6 +136,14 @@ export function buildHandles(f, p) {
     const s = val('eyes.distance');
     T(eyeCR, -0.01 * s, 0, eyeWR * 1.0, eyeWR * 0.6);
     T(eyeCL, 0.01 * s, 0, eyeWL * 1.0, eyeWL * 0.6);
+  }
+
+  if (val('eyes.tilt')) {
+    const s = val('eyes.tilt'); // + angolo esterno sollevato (sguardo "a mandorla" verso l'alto)
+    T(P(33), -0.004 * s, -0.009 * s, eyeW * 0.55, eyeW * 0.45);
+    T(P(263), 0.004 * s, -0.009 * s, eyeW * 0.55, eyeW * 0.45);
+    T(P(133), 0, 0.003 * s, eyeW * 0.35, eyeW * 0.35);
+    T(P(362), 0, 0.003 * s, eyeW * 0.35, eyeW * 0.35);
   }
 
   // ---- Sopracciglia ----

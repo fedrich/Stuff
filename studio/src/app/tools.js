@@ -48,17 +48,19 @@ export const TRAIT_TOOLS = [
   {
     id: 'lips', label: 'Labbra', icon: 'lips',
     sliders: [B('lips.volume', 'Volume', 'Più sottili', 'Più piene'), B('lips.ratio', 'Superiore / inferiore', 'Più inferiore', 'Più superiore'),
-      B('lips.width', 'Larghezza', 'Più strette', 'Più larghe')],
+      B('lips.width', 'Larghezza', 'Più strette', 'Più larghe'), B('lips.define', 'Contorno', 'Più morbido', 'Più definito')],
   },
   {
     id: 'eyes', label: 'Occhi', icon: 'eye',
     sliders: [B('eyes.size', 'Dimensione', 'Più piccoli', 'Più grandi'), B('eyes.shape', 'Forma', 'Più allungati', 'Più aperti'),
-      B('eyes.distance', 'Distanza', 'Più vicini', 'Più distanti'), B('eyes.periocular', 'Zona perioculare', 'Più segnata', 'Più luminosa')],
+      B('eyes.distance', 'Distanza', 'Più vicini', 'Più distanti'), B('eyes.tilt', 'Inclinazione', 'Angolo esterno giù', 'Angolo esterno su'),
+      B('eyes.define', 'Definizione dello sguardo', 'Più morbido', 'Più intenso'), B('eyes.periocular', 'Zona perioculare', 'Più segnata', 'Più luminosa')],
   },
   {
     id: 'brows', label: 'Sopracciglia', icon: 'brow',
     sliders: [B('brows.shape', 'Forma (coda)', 'Coda più bassa', 'Coda più alta'), B('brows.thickness', 'Spessore', 'Più sottili', 'Più folte'),
-      B('brows.arch', 'Arco', 'Più dritte', 'Più arcuate'), B('brows.position', 'Posizione', 'Più basse', 'Più alte')],
+      B('brows.arch', 'Arco', 'Più dritte', 'Più arcuate'), B('brows.position', 'Posizione', 'Più basse', 'Più alte'),
+      B('brows.define', 'Definizione', 'Più leggere', 'Più piene')],
   },
   {
     id: 'face', label: 'Viso', icon: 'face',
@@ -71,41 +73,50 @@ export const TRAIT_TOOLS = [
 // quindi ogni livello è la stessa trasformazione con una forza diversa.
 export const IMPRESSIONS = [
   {
-    id: 'naturale', label: 'Naturale', desc: 'Pelle più uniforme e lineamenti appena più freschi',
-    recipe: { 'texture.smooth': 0.35, 'texture.even': 0.35, 'texture.redness': 0.35, 'light.radiance': 0.3, 'eyes.periocular': 0.35,
-      'eyes.size': 0.12, 'lips.volume': 0.12, 'cheeks.definition': 0.15, 'face.symmetry': 0.2 },
+    id: 'naturale', label: 'Naturale', desc: 'Pelle più uniforme, sguardo fresco, lineamenti appena affinati',
+    recipe: { 'texture.smooth': 0.4, 'texture.even': 0.4, 'texture.redness': 0.4, 'light.radiance': 0.3, 'eyes.periocular': 0.45,
+      'eyes.size': 0.25, 'eyes.define': 0.25, 'brows.define': 0.15, 'lips.volume': 0.2, 'nose.width': -0.2,
+      'jaw.width': -0.2, 'cheeks.definition': 0.2, 'face.symmetry': 0.3 },
+  },
+  {
+    id: 'grazioso', label: 'Grazioso', desc: 'Occhi più grandi e luminosi, naso fine, labbra piene, viso affusolato',
+    recipe: { 'eyes.size': 0.55, 'eyes.tilt': 0.45, 'eyes.define': 0.5, 'eyes.periocular': 0.5,
+      'brows.arch': 0.5, 'brows.shape': 0.3, 'brows.define': 0.35, 'nose.width': -0.6, 'nose.tip': 0.55, 'nose.nostrils': -0.3,
+      'lips.volume': 0.5, 'lips.define': 0.45, 'jaw.width': -0.6, 'chin.width': -0.45, 'chin.length': 0.1, 'face.width': -0.35,
+      'cheeks.volume': 0.3, 'texture.smooth': 0.5, 'texture.even': 0.5, 'texture.redness': 0.45, 'light.radiance': 0.35, 'face.symmetry': 0.4 },
   },
   {
     id: 'delicato', label: 'Delicato', desc: 'Contorni morbidi, viso più sottile, tratti gentili',
-    recipe: { 'texture.smooth': 0.5, 'texture.even': 0.4, 'face.width': -0.35, 'jaw.width': -0.4, 'chin.width': -0.3, 'chin.length': -0.15,
-      'eyes.size': 0.25, 'nose.width': -0.3, 'nose.tip': 0.3, 'lips.volume': 0.2, 'brows.arch': 0.2, 'brows.thickness': -0.15,
-      'light.radiance': 0.35, 'face.contour': -0.3 },
+    recipe: { 'texture.smooth': 0.55, 'texture.even': 0.45, 'face.width': -0.55, 'jaw.width': -0.6, 'chin.width': -0.45, 'chin.length': -0.2,
+      'eyes.size': 0.4, 'eyes.shape': 0.2, 'nose.width': -0.45, 'nose.tip': 0.4, 'lips.volume': 0.3, 'brows.arch': 0.25, 'brows.thickness': -0.2,
+      'light.radiance': 0.4, 'face.contour': -0.3, 'eyes.periocular': 0.4 },
   },
   {
     id: 'definito', label: 'Definito', desc: 'Zigomi e mandibola scolpiti, sguardo più deciso',
-    recipe: { 'cheeks.definition': 0.7, 'cheeks.sculpt': 0.5, 'jaw.definition': 0.8, 'face.contour': 0.6, 'nose.contour': 0.5,
-      'nose.width': -0.2, 'brows.thickness': 0.25, 'brows.position': -0.15, 'eyes.shape': -0.2, 'texture.pores': 0.3, 'texture.even': 0.2 },
+    recipe: { 'cheeks.definition': 0.8, 'cheeks.sculpt': 0.6, 'jaw.definition': 0.9, 'face.contour': 0.6, 'nose.contour': 0.5,
+      'nose.width': -0.35, 'jaw.width': -0.25, 'brows.thickness': 0.3, 'brows.define': 0.4, 'brows.position': -0.2, 'eyes.shape': -0.25,
+      'eyes.tilt': 0.3, 'eyes.define': 0.45, 'lips.define': 0.3, 'texture.pores': 0.3, 'texture.even': 0.25 },
   },
   {
     id: 'radioso', label: 'Radioso', desc: 'Luce, incarnato uniforme e sguardo riposato',
-    recipe: { 'light.radiance': 0.6, 'light.brightness': 0.15, 'texture.even': 0.55, 'texture.redness': 0.5, 'texture.smooth': 0.35,
-      'eyes.periocular': 0.7, 'light.undertone': 0.25, 'eyes.size': 0.1, 'expr.smile': 0.15 },
+    recipe: { 'light.radiance': 0.7, 'light.brightness': 0.2, 'texture.even': 0.6, 'texture.redness': 0.55, 'texture.smooth': 0.4,
+      'eyes.periocular': 0.8, 'eyes.define': 0.3, 'light.undertone': 0.25, 'eyes.size': 0.2, 'expr.smile': 0.2, 'lips.volume': 0.15 },
   },
   {
-    id: 'sofisticato', label: 'Sofisticato', desc: 'Zigomi alti, naso affinato, sopracciglia arcuate',
-    recipe: { 'cheeks.definition': 0.45, 'cheeks.volume': 0.3, 'nose.width': -0.3, 'nose.tip': 0.35, 'nose.contour': 0.35,
-      'brows.arch': 0.45, 'brows.shape': 0.3, 'eyes.shape': -0.25, 'lips.ratio': 0.25, 'jaw.definition': 0.35,
-      'texture.smooth': 0.3, 'texture.even': 0.3 },
+    id: 'sofisticato', label: 'Sofisticato', desc: 'Zigomi alti, naso affinato, sguardo allungato, sopracciglia arcuate',
+    recipe: { 'cheeks.definition': 0.55, 'cheeks.volume': 0.35, 'nose.width': -0.45, 'nose.tip': 0.5, 'nose.contour': 0.4,
+      'brows.arch': 0.55, 'brows.shape': 0.4, 'brows.define': 0.35, 'eyes.shape': -0.3, 'eyes.tilt': 0.55, 'eyes.define': 0.45,
+      'lips.ratio': 0.3, 'lips.define': 0.4, 'jaw.definition': 0.45, 'jaw.width': -0.3, 'texture.smooth': 0.35, 'texture.even': 0.35 },
   },
   {
     id: 'armonioso', label: 'Armonioso', desc: 'Più simmetria ed equilibrio tra le proporzioni',
-    recipe: { 'face.symmetry': 1, 'texture.even': 0.45, 'texture.smooth': 0.25, 'texture.redness': 0.3, 'eyes.size': 0.08,
-      'lips.volume': 0.1, 'light.radiance': 0.2 },
+    recipe: { 'face.symmetry': 1, 'texture.even': 0.5, 'texture.smooth': 0.3, 'texture.redness': 0.35, 'eyes.size': 0.15,
+      'lips.volume': 0.15, 'nose.width': -0.2, 'jaw.width': -0.2, 'light.radiance': 0.25, 'eyes.periocular': 0.3 },
   },
   {
     id: 'espressivo', label: 'Espressivo', desc: 'Occhi più aperti, labbra piene, espressione vivace',
-    recipe: { 'eyes.size': 0.3, 'eyes.shape': 0.3, 'brows.arch': 0.35, 'brows.position': 0.15, 'lips.volume': 0.35, 'cheeks.volume': 0.35,
-      'expr.smile': 0.35, 'light.radiance': 0.3, 'eyes.periocular': 0.3 },
+    recipe: { 'eyes.size': 0.45, 'eyes.shape': 0.35, 'eyes.define': 0.5, 'brows.arch': 0.4, 'brows.position': 0.2, 'brows.define': 0.3,
+      'lips.volume': 0.5, 'lips.define': 0.35, 'cheeks.volume': 0.4, 'expr.smile': 0.4, 'light.radiance': 0.35, 'eyes.periocular': 0.4 },
   },
 ];
 

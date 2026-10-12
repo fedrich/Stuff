@@ -132,6 +132,7 @@ export class Engine {
     this.texture('maskB', mw, mh, 'rgba8', m.maskB.data);
     this.texture('shade', mw, mh, 'rgba8', m.shade.data);
     this.texture('glow', mw, mh, 'rgba8', m.glow.data);
+    this.texture('maskC', mw, mh, 'rgba8', m.maskC.data);
     this.texture('skinHard', mw, mh, 'rgba8', m.skinHard);
     this.texture('freck', 1, 1, 'r8', new Uint8Array(1));
     const W = this.frame.W;
@@ -190,8 +191,8 @@ export class Engine {
     gl.viewport(0, 0, this.w, this.h);
     gl.useProgram(prog);
     gl.uniform1f(u.uFlipY, target ? 0 : 1);
-    const units = ['uOrig', 'uBlur1', 'uBlur2', 'uMaskA', 'uMaskB', 'uShade', 'uGlow', 'uFreck', 'uHandles'];
-    const texs = ['orig', 'blur1', 'blur2', 'maskA', 'maskB', 'shade', 'glow', 'freck', 'handles'];
+    const units = ['uOrig', 'uBlur1', 'uBlur2', 'uMaskA', 'uMaskB', 'uShade', 'uGlow', 'uFreck', 'uHandles', 'uMaskC'];
+    const texs = ['orig', 'blur1', 'blur2', 'maskA', 'maskB', 'shade', 'glow', 'freck', 'handles', 'maskC'];
     units.forEach((name, i) => {
       gl.activeTexture(gl.TEXTURE0 + i);
       gl.bindTexture(gl.TEXTURE_2D, this.tex[texs[i]] || this.tex.orig);
@@ -207,6 +208,7 @@ export class Engine {
       uTone: 'light.undertone', uFreckInt: 'freckles.intensity',
       uCheekDef: 'cheeks.definition', uCheekVol: 'cheeks.volume', uSculpt: 'cheeks.sculpt', uJawDef: 'jaw.definition',
       uNoseDef: 'nose.contour', uContour: 'face.contour', uLipVol: 'lips.volume', uBrowThick: 'brows.thickness', uPeri: 'eyes.periocular',
+      uEyeDef: 'eyes.define', uBrowDef: 'brows.define', uLipDef: 'lips.define',
     };
     for (const [un, key] of Object.entries(f)) gl.uniform1f(u[un], v(key));
     if (!((p['freckles.amount'] || 0) > 0)) gl.uniform1f(u.uFreckInt, 0);
